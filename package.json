@@ -4,6 +4,7 @@
   "description": "LinQ + TypeScript",
   "es2015": "index.ts",
   "source": "index.ts",
+  "type": "module",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
@@ -69,14 +70,14 @@
     }
   },
   "ava": {
+    "files": [
+      "dist/__tests__/**/*.js"
+    ],
     "typescript": {
       "rewritePaths": {
-        "src/": "build/"
+        "src/": "dist/src/"
       },
       "compile": "tsc"
-    },
-    "require": [
-      "ts-node/register"
-    ]
+    }
   }
 }

@@ -1,11 +1,11 @@
 import test from 'ava'
 
-import Enumerable from '../src/enumerable'
+import Enumerable from '../src/enumerable.js'
 
 test('Range', t => {
   t.deepEqual(
     Enumerable.Range(1, 10)
-      .Select(x => x * x)
+      .Select((x: number) => x * x)
       .ToArray(),
     [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
   )

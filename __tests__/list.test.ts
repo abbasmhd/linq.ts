@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import List from '../src/list'
+import List from '../src/list.js'
 
 interface IPackage {
   Company: string
@@ -561,13 +561,11 @@ test('LastOrDefault', t => {
   t.is(new List<string>().LastOrDefault('default'), 'default')
 })
 
-
 test('Max', t => {
   const people = new List<IPerson>([
     { Age: 50, Name: 'Bob' },
     { Age: 15, Name: 'Cathy' },
     { Age: 25, Name: 'Alice' }
-    
   ])
   t.is(
     people.Max(x => x.Age ?? 0),
@@ -587,8 +585,8 @@ test('Max_invalid_function_provided', t => {
   ])
 
   // Provide an invalid selector (wrong type) to trigger the error
-  let invalidFn = () => 0;
-  
+  let invalidFn = () => 0
+
   t.throws(() => people.Max(invalidFn), {
     message: /InvalidOperationException: Invalid comparer or selector function provided./
   })
@@ -609,10 +607,7 @@ test('Max_undefinedComparer', t => {
 test('Max_emptyElements', t => {
   const people = new List<IPerson>([])
 
-  t.is(
-    people.Max(),
-    undefined
-  )
+  t.is(people.Max(), undefined)
 })
 
 test('Max_comparer', t => {
@@ -622,58 +617,31 @@ test('Max_comparer', t => {
     { Age: 50, Name: 'Bob' }
   ])
 
-  let comparer = ((a: IPerson, b: IPerson) => (a.Age ?? 0) - (b.Age ?? 0));
-  
-  t.is(
-    people.Max(comparer),
-    people.Last()
-  );
+  let comparer = (a: IPerson, b: IPerson) => (a.Age ?? 0) - (b.Age ?? 0)
+
+  t.is(people.Max(comparer), people.Last())
 })
 
 test('Max_number', t => {
-  const nums = new List<number>([
-    5,
-    10,
-    -5
-  ])
-  t.is(
-    nums.Max(),
-    10
-  )
+  const nums = new List<number>([5, 10, -5])
+  t.is(nums.Max(), 10)
 })
 
 test('Max_string', t => {
-  const people = new List<string>([
-    'Cathy',
-    'Alice',
-    'Bob'
-  ])
-  t.is(
-    people.Max(),
-    'Cathy'
-  )
+  const people = new List<string>(['Cathy', 'Alice', 'Bob'])
+  t.is(people.Max(), 'Cathy')
 })
 
 test('Max_boolean', t => {
-  const bools = new List<boolean>([
-    true,
-    false,
-    true,
-    false
-  ])
-  t.is(
-    bools.Max(),
-    true
-  )
+  const bools = new List<boolean>([true, false, true, false])
+  t.is(bools.Max(), true)
 })
-
 
 test('Min', t => {
   const people = new List<IPerson>([
     { Age: 50, Name: 'Bob' },
     { Age: 15, Name: 'Cathy' },
     { Age: 25, Name: 'Alice' }
-    
   ])
   t.is(
     people.Min(x => x.Age ?? 0),
@@ -693,8 +661,8 @@ test('Min_invalid_function_provided', t => {
   ])
 
   // Provide an invalid selector (wrong type) to trigger the error
-  let invalidFn = () => 0;
-  
+  let invalidFn = () => 0
+
   t.throws(() => people.Min(invalidFn), {
     message: /InvalidOperationException: Invalid comparer or selector function provided./
   })
@@ -719,58 +687,30 @@ test('Min_comparer', t => {
     { Age: 50, Name: 'Bob' }
   ])
 
-  let comparer = ((a: IPerson, b: IPerson) => (a.Age ?? 0) - (b.Age ?? 0));
-  
-  t.is(
-    people.Min(comparer),
-    people.First()
-  );
+  let comparer = (a: IPerson, b: IPerson) => (a.Age ?? 0) - (b.Age ?? 0)
+
+  t.is(people.Min(comparer), people.First())
 })
 
 test('Min_emptyElements', t => {
   const people = new List<IPerson>([])
 
-  t.is(
-    people.Min(),
-    undefined
-  )
+  t.is(people.Min(), undefined)
 })
 
 test('Min_number', t => {
-  const nums = new List<number>([
-    10,
-    5,
-    -5
-  ])
-  t.is(
-    nums.Min(),
-    -5
-  )
+  const nums = new List<number>([10, 5, -5])
+  t.is(nums.Min(), -5)
 })
 
 test('Min_string', t => {
-  const people = new List<string>([
-    'Cathy',
-    'Alice',
-    'Bob'
-  ])
-  t.is(
-    people.Min(),
-    'Alice'
-  )
+  const people = new List<string>(['Cathy', 'Alice', 'Bob'])
+  t.is(people.Min(), 'Alice')
 })
 
 test('Min_boolean', t => {
-  const bools = new List<boolean>([
-    true,
-    false,
-    true,
-    false
-  ])
-  t.is(
-    bools.Min(),
-    false
-  )
+  const bools = new List<boolean>([true, false, true, false])
+  t.is(bools.Min(), false)
 })
 
 test('OfType', t => {

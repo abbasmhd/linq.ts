@@ -1,4 +1,4 @@
-import List from './list'
+import List from './list.js'
 
 export default class Enumerable {
   /**
